@@ -6,13 +6,19 @@
 """
 import jieba
 
-inp = open('news_tensite_xml.smarty.txt', 'r', encoding='utf-8')
+inp = open('news_tensite_xml.smarty.dat', 'r', encoding='utf-8')
 outp = open('news_tensite_xml.smarty.result.txt', 'w', encoding='utf8')
 
 for line in inp.readlines():
-    seg_list = jieba.lcut(line, cut_all=False)
-   #print("Default Mode: " + "/ ".join(seg_list))  # 精确模式
-    line = "/ ".join(seg_list)
-    outp.write(line)
+    if re.match(r'<content>.', line):
+        m = re.split(r'<content>', line)
+        line = m[1]
+        m = re.split(r'</content>', line)
+        line = m[0]
+        #print(line)
+        seg_list = jieba.lcut(line, cut_all=False)
+        #print("Default Mode: " + "/ ".join(seg_list))  # 精确模式
+        line = "/ ".join(seg_list)
+        outp.write(line)
 inp.close()
 outp.close()

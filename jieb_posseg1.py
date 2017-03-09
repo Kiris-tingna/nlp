@@ -7,21 +7,13 @@
 import re
 import jieba.posseg
 
-infile = 'news_tensite_xml.smarty.dat'
-outfile = 'news_tensite_xml.smarty.result.txt'
+infile = 'news_tensite_xml.smarty.txt'
+outfile = 'news_tensite_xml.smarty.posseg.txt'
 
-inp = open(infile, 'r', encoding='gb18030')
+inp = open(infile, 'r', encoding='utf8')
 outp = open(outfile, 'w', encoding='utf8')
-line = inp.readline()
-for line in inp.readlines():
-    if re.match(r'<content>.', line):
-        m = re.split(r'<content>', line)
-        line = m[1]
-        m = re.split(r'</content>', line)
-        line = m[0]
-        #print(line)
-        outp.write(line+'\n')
 
+for line in inp.readlines():
         print('=' * 40)
         print('4. 词性标注')
         print('-' * 40)
