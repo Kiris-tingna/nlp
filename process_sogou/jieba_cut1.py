@@ -4,7 +4,6 @@
 @file:word1.py
 @time:2017/3/8 0008 16:24
 """
-
 import jieba
 
 infile = 'news_tensite_xml.smarty.txt'
