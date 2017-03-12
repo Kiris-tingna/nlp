@@ -9,7 +9,7 @@ import re
 
 workbook = xlrd.open_workbook('知识库.xlsx')
 booksheet = workbook.sheet_by_name('Sheet0')
-outp = open('SZDLKF_question.txt', 'w', encoding='utf8')
+outp = open('SZDLKF_answer.txt', 'w', encoding='utf8')
 
 p = list()
 i = 0
@@ -30,18 +30,18 @@ for row in range(booksheet.nrows):
             val = str(val)
         row_data.append(val)
     p.append(row_data)
-    if row_data[0] != "":
+    if row_data[2] != "":
         i = i + 1
         rule = re.compile(u"[^\u4e00-\u9fa5]")
-        row_data[0]= rule.sub('', row_data[0])
-        outp.write(row_data[0]+'\n')
+        row_data[2]= rule.sub('', row_data[2])
+        outp.write(row_data[2]+'\n')
 print('Process '+ str(i))
 outp.close()
 
 import jieba
 
-infile = 'SZDLKF_question.txt'
-outfile = 'SZDLKF_question.segment.txt'
+infile = 'SZDLKF_answer.txt'
+outfile = 'SZDLKF_answer.segment.txt'
 
 inp = open(infile, 'r', encoding='utf-8')
 outp = open(outfile, 'w', encoding='utf8')
@@ -60,8 +60,8 @@ outp.close()
 
 # 关键词提取
 import jieba.analyse
-infile = 'SZDLKF_question.segment.txt'
-outfile = 'SZDLKF_question.analyse.txt'
+infile = 'SZDLKF_answer.segment.txt'
+outfile = 'SZDLKF_answer.analyse.txt'
 inp = open(infile, 'r', encoding='utf8')
 outp = open(outfile, 'w', encoding='utf8')
 
