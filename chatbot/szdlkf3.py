@@ -51,7 +51,7 @@ print('中文分词')
 print('-' * 40)
 for line in inp.readlines():
     seg_list = jieba.lcut(line)
-    line = "/ ".join(seg_list)
+    line = " ".join(seg_list)
     #print(line)
     outp.write(line)
 print('中文分词 OK')
