@@ -13,6 +13,7 @@ booksheet = workbook.sheet_by_name('Sheet0')
 db_filename = 'kbase.db'
 db_is_new = not os.path.exists(db_filename)
 conn = sqlite3.connect(db_filename)
+print("Opened database successfully")
 if db_is_new:
     print ('Need to create schema')
 else:
@@ -44,5 +45,6 @@ for row in range(booksheet.nrows):
     conn.execute("INSERT INTO kbase(question,question1,answer,question2) VALUES (?,?,?,?)", row_data)
 
 print('Process '+ str(i))
+conn.execute('CREATE INDEX qa_idx ON kbase (question);')
 conn.commit()
 conn.close()
