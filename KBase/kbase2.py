@@ -23,27 +23,6 @@ def show_entries():
     entries = [record[1], record[2], record[3], record[4]]
     return render_template('show_entries.html', entries=entries)
 
-@app.route('/upload')
-def upload():
-    if request.method == 'POST' and 'excel' in request.files:
-        filename = request.files['excel'].filename
-        extension = filename.split(".")[-1]
-        content = request.files['excel'].read()
-        if sys.version_info[0] > 2:
-            content = content.decode('utf-8')
-        sheet = pe.get_sheet(file_type=extension, file_content=content)
-        sheet.name_columns_by_row(0)
-        return jsonify({"result": sheet.dict})
-    return render_template('upload.html')
-
-@app.route('/download')
-def download():
-    sheet = pe.Sheet(data)
-    output = make_response(sheet.csv)
-    output.headers["Content-Disposition"] = "attachment; filename=export.csv"
-    output.headers["Content-type"] = "text/csv"
-    return output
-
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
@@ -74,6 +53,60 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+
+@app.route("/import", methods=['GET', 'POST'])
+def doimport():
+    if request.method == 'POST':
+        def category_init_func(row):
+            c = Category(row['name'])
+            c.id = row['id']
+            return c
+        def post_init_func(row):
+            c = Category.query.filter_by(name=row['category']).first()
+            p = Post(row['title'], row['body'], c, row['pub_date'])
+            return p
+        #request.
+        return "Saved"
+    return '''
+    <!doctype html>
+    <title>Upload an excel file</title>
+    <h1>Excel file upload (xls, xlsx, ods please)</h1>
+    <form action="" method=post enctype=multipart/form-data><p>
+    <input type=file name=file><input type=submit value=Upload>
+    </form>
+    '''
+
+@app.route("/export", methods=['GET'])
+def doexport():
+    return excel.make_response_from_tables(db.session, [Category, Post], "xls")
+
+@app.route("/custom_export", methods=['GET'])
+def docustomexport():
+    query_sets = Category.query.filter_by(id=1).all()
+    column_names = ['id', 'name']
+    return excel.make_response_from_query_sets(query_sets, column_names, "xls")
+
+@app.route("/upload", methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        return jsonify({"result": request.get_array(field_name='file')})
+    return '''
+    <!doctype html>
+    <title>Upload an excel file</title>
+    <h1>Excel file upload (csv, tsv, csvz, tsvz only)</h1>
+    <form action="" method=post enctype=multipart/form-data><p>
+    <input type=file name=file><input type=submit value=Upload>
+    </form>
+    '''
+
+@app.route('/download')
+def download():
+    sheet = pe.Sheet(data)
+    output = make_response(sheet.csv)
+    output.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
 
 if __name__ == "__main__":
     app.run()
