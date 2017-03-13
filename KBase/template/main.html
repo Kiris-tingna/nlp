@@ -1,0 +1,42 @@
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - KBase</title>
+    {% else %}
+    <title>KBase</title>
+    {% endif %}
+  </head>
+
+  <body>
+    <div>
+    {% for page in range(pages) %}
+        <a href='{{url_for('read_csv',page_num=page+1,limits=limits)}}'>{{ loop.index }}</a>
+    {% endfor %}
+</div>
+
+    <hr>
+
+    <table class="table">
+    <thead>
+        <tr>
+             <td>标准问题</td>
+             <td>标准答案</td>
+
+       </tr>
+    </thead>
+    <tbody>
+    {%  for row in df %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+
+       </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+    </ul>
+    {% block content %}{% endblock %}
+  </body>
+
+</html>
