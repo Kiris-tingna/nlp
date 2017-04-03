@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
+      <dl>
+        <dt>标准问题:
+        <dd><input type="text" size="30" name="question">
+        <dt>扩展问:
+        <dd><input type="text" size="30" name="question1">
+        <dt>分支问题:
+        <dd><input type="text" size="30" name="question2">
+        <dt>标准答案:
+        <dd><textarea name="answer" rows="5" cols="40"></textarea>
+        <dd><input type="submit" value="input">
+      </dl>
+    </form>
+  {% endif %}
+  <ul class="entries">
+  {% for entry in entries %}
+    <li><h2>{{ entry.question }}</h2>{{ entry.answer|safe }}</li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em></li>
+  {% endfor %}
+  </ul>
+{% endblock %}
