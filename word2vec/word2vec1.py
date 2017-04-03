@@ -1,5 +1,4 @@
 from gensim.models import Word2Vec, LdaModel
-from gensim import corpora
 
 
 class MyCorpus(object):

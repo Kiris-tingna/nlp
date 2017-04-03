@@ -4,7 +4,7 @@
 # @time:2017/3/12 0012 17:21
 
 from gensim.models import Word2Vec, LdaModel
-from gensim import corpora
+
 
 class MyCorpus(object):
     def __init__(self, docs):
