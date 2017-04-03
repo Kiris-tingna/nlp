@@ -11,15 +11,15 @@ def get_trie(filepath):
     for line in reader:
         try:
             p = trie
-            encodeLine = line.decode('GBK')
+            encodeLine = line.decode('gbk')
             sentence = encodeLine.split('\t')[0].strip()
             for word in sentence:
                 if word not in p:
                     p[word] = {}
                 p = p[word]
             p[None] = {}
-        except Exception, err:
-            print line, err
+        except Exception:
+            print(line, err)
             continue
     reader.close()
     return trie
@@ -66,7 +66,7 @@ def ForwardMMSeg(sentence, trie, maxLen = 0):
 #逆向最大匹配算法
 def ReverseMMSeg(sentence, trie, maxLen = 0):
     if not isinstance(sentence, unicode):
-        print ("input must be unicode")
+        print("input must be unicode")
     if maxLen == 1:
         return [word for word in sentence]
     result = []

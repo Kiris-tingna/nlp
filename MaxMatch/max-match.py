@@ -1,8 +1,7 @@
-#!/usr/bin/env python
-import cPickle as pickle
+# !/usr/bin/env python
 import sys
-
 window_size=5
+
 
 def max_match_segment(line, dic):
     # write your code here
@@ -21,17 +20,14 @@ def max_match_segment(line, dic):
             i = 1
             words.append(chars[idx].encode("utf8"))
         idx = idx + i
-
     return words
 
-if __name__=="__main__":
-
+if __name__ == "__main__":
     try:
         fpi=open(sys.argv[1], "r")
     except:
         print >> sys.stderr, "failed to open file"
         sys.exit(1)
-
     try:
         dic = pickle.load(open(sys.argv[2], "r"))
     except:

@@ -1,5 +1,5 @@
 # -*- coding: cp936 -*-
-import sys
+# import sys
 import os
 
 
@@ -23,7 +23,7 @@ def BuildWordBank():
     fp.close()
     mat = matrix(11)
     for w in lst:  # 根据长度分类
-        #mat[len(w) / 2].append(w)
+        # mat[len(w) / 2].append(w)
         mat.append(w)
     """
     max_length=0 #词表中最大词的长度是20*1/2=10个单字
@@ -64,7 +64,7 @@ def MM(d):
     for filename in file_list:
         # filename = "960101.TXT"
         fp = open(dirx + filename, "r")
-        print        ("processing %s ,please wait.." % filename)
+        print("processing %s ,please wait.." % filename)
         iters = 1  # 记录迭代行数
         for line in fp.readlines():
             if iters % 100 == 0:
