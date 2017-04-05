@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from pymmseg import Analysis
+from cut.pymmseg import Analysis
 
 
 def cuttest(text):

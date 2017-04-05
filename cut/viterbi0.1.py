@@ -4,7 +4,7 @@
   @author royguo1988@gmail.com
   @date 2012-12-23
 """
-from lm import LanguageModel
+from cut.lm import LanguageModel
 class Node(object):
   """有向图中的节点"""
   def __init__(self,word):
