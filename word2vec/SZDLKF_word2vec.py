@@ -3,7 +3,7 @@
 # @file:SZDLKF_word2vec.py
 # @time:2017/3/12 0012 18:01
 import gensim
-model = gensim.models.Word2Vec.load("SZDLKF_answer.segment.model")
+model = gensim.models.Word2Vec.load("SZDLKF_answer.pymmseg.model")
 
 print(model.most_similar(u"电费"))
 result = model.most_similar(u"触电")

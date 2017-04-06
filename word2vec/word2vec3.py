@@ -66,10 +66,10 @@ def test_model(word_file, output_file):
 
 def main():
   (index, output_file, model) = WORD2VEC_LIST[WORD2VEC_INDEX]
-  sentences = LineSentence('SZDLKF_answer.segment.txt')
+  sentences = LineSentence('SZDLKF_answer.pymmseg.txt')
 
   if not os.path.exists(output_file):
-    train_sentences = LineSentence('SZDLKF_answer.segment.txt')
+    train_sentences = LineSentence('SZDLKF_answer.pymmseg.txt')
     train(model, sentences, output_file, train_sentences)
   else:
     #test_model_random(sentences, output_file)

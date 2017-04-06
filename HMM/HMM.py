@@ -1,25 +1,4 @@
 # coding=utf-8
-#        ┏┓　　　┏┓+ +
-# 　　　┏┛┻━━━┛┻┓ + +
-# 　　　┃　　　　　　 ┃ 　
-# 　　　┃　　　━　　　┃ ++ + + +
-# 　　 ████━████ ┃+
-# 　　　┃　　　　　　 ┃ +
-# 　　　┃　　　┻　　　┃
-# 　　　┃　　　　　　 ┃ + +
-# 　　　┗━┓　　　┏━┛
-# 　　　　　┃　　　┃　　　　　　　　　　　
-# 　　　　　┃　　　┃ + + + +
-# 　　　　　┃　　　┃　　　　Codes are far away from bugs with the animal protecting　　　
-# 　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　
-# 　　　　　┃　　　┃
-# 　　　　　┃　　　┃　　+　　　　　　　　　
-# 　　　　　┃　 　　┗━━━┓ + +
-# 　　　　　┃ 　　　　　　　┣┓
-# 　　　　　┃ 　　　　　　　┏┛
-# 　　　　　┗┓┓┏━┳┓┏┛ + + + +
-# 　　　　　　┃┫┫　┃┫┫
-# 　　　　　　┗┻┛　┗┻┛+ + + +
 """
 Author = Eric_Chan
 Create_Time = 2016/10/30
@@ -40,11 +19,11 @@ def load_file(file_name, charset='utf-8'):
     :return: 文本内容列表
     """
     f1 = open(file_name)
-    line = f1.readline().decode(charset).strip()
+    line = f1.readline().strip()
     line_list = []
     while line:
         line_list.append(line)
-        line = f1.readline().decode(charset).strip()
+        line = f1.readline().strip()
     return line_list
 
 
@@ -61,7 +40,7 @@ class HMM:
         self.vocab_map = dict(zip(vocab_list, range(vocab_list.__len__())))  # 词语映射哈希表
         self.emitter_pro_matrix = np.loadtxt('./data/B.txt')  # 发射概率矩阵
         del vocab_list
-        print '初始化完毕'
+        print('初始化完毕')
 
     def hmm(self, sentence_list):
         """
@@ -105,5 +84,5 @@ if __name__ == '__main__':
     H = HMM()
     import time
     t1 = time.time()
-    print H.hmm([u'结合', u'成', u'分子', u'时'])
+    print (H.hmm([u'结合', u'成', u'分子', u'时']))
     t2 = time.time()

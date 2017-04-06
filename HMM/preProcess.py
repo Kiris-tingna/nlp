@@ -1,25 +1,4 @@
 # coding=utf-8
-#        ┏┓　　　┏┓+ +
-# 　　　┏┛┻━━━┛┻┓ + +
-# 　　　┃　　　　　　 ┃ 　
-# 　　　┃　　　━　　　┃ ++ + + +
-# 　　 ████━████ ┃+
-# 　　　┃　　　　　　 ┃ +
-# 　　　┃　　　┻　　　┃
-# 　　　┃　　　　　　 ┃ + +
-# 　　　┗━┓　　　┏━┛
-# 　　　　　┃　　　┃　　　　　　　　　　　
-# 　　　　　┃　　　┃ + + + +
-# 　　　　　┃　　　┃　　　　Codes are far away from bugs with the animal protecting　　　
-# 　　　　　┃　　　┃ + 　　　　神兽保佑,代码无bug　　
-# 　　　　　┃　　　┃
-# 　　　　　┃　　　┃　　+　　　　　　　　　
-# 　　　　　┃　 　　┗━━━┓ + +
-# 　　　　　┃ 　　　　　　　┣┓
-# 　　　　　┃ 　　　　　　　┏┛
-# 　　　　　┗┓┓┏━┳┓┏┛ + + + +
-# 　　　　　　┃┫┫　┃┫┫
-# 　　　　　　┗┻┛　┗┻┛+ + + +
 """
 Author = Eric_Chan
 Create_Time = 2016/10/29
@@ -49,11 +28,11 @@ def load_file(file_name, charset='utf-8'):
     :return: 文本内容列表
     """
     f1 = open(file_name)
-    line = f1.readline().decode(charset)
+    line = f1.readline()
     line_list = []
     while line:
         line_list.append(line)
-        line = f1.readline().decode(charset)
+        line = f1.readline()
     return line_list
 
 
@@ -142,6 +121,6 @@ if __name__ == '__main__':
     np.savetxt('./data/B.txt', emitter_pro_matrix)  # 保存发射矩阵为B.txt
     f = open('./data/vocab_map.txt', 'w')
     for vocab in list(vocab_list):
-        f.write(vocab.encode('utf-8'))
+        f.write(vocab)
         f.write('\n')
     f.close()

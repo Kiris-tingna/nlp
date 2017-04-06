@@ -15,7 +15,7 @@ class MyCorpus(object):
             yield line.split()
 
 
-f1 = open(r'../chatbot/SZDLKF_answer.segment.txt', 'r', encoding='utf8')
+f1 = open(r'../chatbot/SZDLKF_answer.pymmseg.txt', 'r', encoding='utf8')
 outp1 = open(r'model', 'a+')
 outp2 = open(r'model_vec', 'a+')
 

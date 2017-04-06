@@ -340,7 +340,7 @@ def test():
   print(result)
   print("detail of node:的")
   mydict.dict["的"].printBaseNode()
-  print("testing segment file to file...")
+  print("testing pymmseg file to file...")
   print("source file: %s"%sourcepath)
   mydict.segmentFile(sourcepath, targeobj_path,show_detail=True)
 
