@@ -4,7 +4,7 @@
 	@author: Yigoss.Panyi
 	@date: 2014-6-7
 '''
-import hmmseg
+from hmmseg import *
 
 def gen_dict(dictfile):
     print("Building dictionary...")
@@ -53,13 +53,13 @@ def mmcut(sentence, wordsdict, RMM=True):
 
 
 if __name__ == "__main__":
-    wordsdict = gen_dict("dict/dict.txt")
-    deshmm = open('../question_hmm.txt', 'w', encoding='utf-8')
-    desfmm = open('../question_fmm.txt', 'w', encoding='utf-8')
-    desrmm = open('../question_rmm.txt', 'w', encoding='utf-8')
-    with open('../question.txt', 'r', encoding='utf-8') as src:
+    wordsdict = gen_dict("../dict/jieba.dict.utf8")
+    deshmm = open('question_hmm.txt', 'w', encoding='utf-8')
+    desfmm = open('question_fmm.txt', 'w', encoding='utf-8')
+    desrmm = open('question_rmm.txt', 'w', encoding='utf-8')
+    with open('question.txt', 'r', encoding='utf-8') as src:
         for inline in src:
-            wordseghmm = ''.join(hmmseg.cut(inline))
+            wordseghmm = ''.join(cut(inline))
             wordsegfmm = ''.join(mmcut(inline, wordsdict, RMM=False))
             wordsegrmm = ''.join(mmcut(inline, wordsdict))
             deshmm.write(wordseghmm)

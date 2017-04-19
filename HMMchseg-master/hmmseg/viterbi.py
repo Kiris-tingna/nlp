@@ -53,7 +53,7 @@ def gen_seg_viterbi(sentence):
     prob, pos_list = viterbi(sentence, ('B', 'M', 'E', 'S'), start_P, trans_P, emit_P)
     # print("The maximum pro : %f" %(prob))
     begin, next = 0, 0
-    # print pos_list, sentence
+    print(pos_list, sentence)
     for i, char in enumerate(sentence):
         pos = pos_list[i]
         if pos == 'B':
