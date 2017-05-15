@@ -1,10 +1,6 @@
-# -*- coding: UTF-8 -*-
-'''
-	The forward Maximum Match and Reverse Maximum Match for Chinese sentence segmentation
-	@author: Yigoss.Panyi
-	@date: 2014-6-7
-'''
-import hmmseg
+# -*- coding: utf-8 -*-
+from tqdm import *
+
 
 def gen_dict(dictfile):
     print("Building dictionary...")
@@ -19,7 +15,6 @@ def gen_dict(dictfile):
 
 
 def mmcut(sentence, wordsdict, RMM=True):
-    # print (sentence)
     result_s = ""
     s_length = len(sentence)
     if not RMM:
@@ -33,7 +28,6 @@ def mmcut(sentence, wordsdict, RMM=True):
                     break
                 else:
                     word = word[:w_length - 1]
-                    # print(word)
                 w_length = w_length - 1
             s_length = len(sentence)
     else:
@@ -51,20 +45,19 @@ def mmcut(sentence, wordsdict, RMM=True):
             s_length = len(sentence)
     return result_s
 
+wordsdict = gen_dict("../jieba.dict.utf8")
+desfmm = open('question_fmm.txt', 'w', encoding='utf-8')
+desrmm = open('question_rmm.txt', 'w', encoding='utf-8')
 
-if __name__ == "__main__":
-    wordsdict = gen_dict("dict/dict.txt")
-    deshmm = open('../it_hmm.txt', 'w', encoding='utf-8')
-    desfmm = open('../it_fmm.txt', 'w', encoding='utf-8')
-    desrmm = open('../it_rmm.txt', 'w', encoding='utf-8')
-    with open('../IT.txt', 'r', encoding='utf-8') as src:
-        for inline in src:
-            wordseghmm = ''.join(hmmseg.cut(inline))
-            wordsegfmm = ''.join(mmcut(inline, wordsdict, RMM=False))
-            wordsegrmm = ''.join(mmcut(inline, wordsdict))
-            deshmm.write(wordseghmm)
-            desfmm.write(wordsegfmm)
-            desrmm.write(wordsegrmm)
-    desrmm.close()
-    desfmm.close()
-    deshmm.close()
+with open('question.txt', 'r', encoding='utf-8') as src:
+    for j in tqdm(range(1675)):
+        sentence = src.readline()
+        if not sentence: break
+        segfmm = []
+        segrmm = []
+        segfmm.append(''.join(mmcut(sentence, wordsdict, RMM=False)))
+        segrmm.append(''.join(mmcut(sentence, wordsdict,)))
+        for word in segfmm:
+            desfmm.write(word + '  ')
+        for word in segrmm:
+            desrmm.write(word + '  ')
