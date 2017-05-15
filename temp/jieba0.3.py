@@ -37,5 +37,7 @@ if __name__ == "__main__":
             print(sentence)
             seg_list = jieba.cut_for_search(sentence)
             # print("搜索引擎模式: " + "/ ".join(seg_list))
-            descws.write("/".join(seg_list))
+            segment = "/".join(seg_list)
+            descws.write(segment)
+            print("搜索引擎模式: ", segment)
     descws.close()

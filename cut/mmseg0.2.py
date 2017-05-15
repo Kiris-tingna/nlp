@@ -11,8 +11,8 @@ def gen_dict(dictfile):
     dictionary_seg = {}
     with open(dictfile, "r", encoding='utf-8') as f:
         for line in f:
-            word, freq, _ = line.strip().split()
-            dictionary_seg[word] = int(freq)
+            word = line.strip()
+            dictionary_seg[word] = line
     f.close()
     print("The volumn of dictionary: %d" % (len(dictionary_seg)))
     return dictionary_seg
@@ -53,7 +53,7 @@ def mmcut(sentence, wordsdict, RMM=True):
 
 
 if __name__ == "__main__":
-    wordsdict = gen_dict("dict/dict.txt")
+    wordsdict = gen_dict("dict/words.dic")
     deshmm = open('../it_hmm.txt', 'w', encoding='utf-8')
     desfmm = open('../it_fmm.txt', 'w', encoding='utf-8')
     desrmm = open('../it_rmm.txt', 'w', encoding='utf-8')

@@ -36,6 +36,7 @@ if __name__ == "__main__":
         for sentence in src:
             print(sentence)
             seg_list = jieba.cut(sentence, cut_all=False)
-            # print("Default Mode: " + "/ ".join(seg_list))
-            descws.write("/".join(seg_list))
+            segment = "/".join(seg_list)
+            descws.write(segment)
+            print("默认模式: ", segment)
     descws.close()
