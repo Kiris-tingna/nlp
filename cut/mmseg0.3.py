@@ -85,6 +85,7 @@ def mmcut(sentence, custom_dict, wordsdict, RMM=True):
     s_length = len(sentence)
     english_word = ""
     if not RMM:
+        result_s = "["
         while s_length > 0:
             word = sentence
             w_length = len(word)
@@ -95,11 +96,11 @@ def mmcut(sentence, custom_dict, wordsdict, RMM=True):
                     sentence = sentence[w_length:]
                     break
                 elif word in custom_dict :
-                    result_s += word + "/"
+                    result_s += word + "]["
                     sentence = sentence[w_length:]
                     break
                 elif word in wordsdict :
-                    result_s += word + "/"
+                    result_s += word + "]["
                     sentence = sentence[w_length:]
                     break
                 else:
@@ -111,23 +112,31 @@ def mmcut(sentence, custom_dict, wordsdict, RMM=True):
                             w_length = len(word)
                         else:
                             if english_word:
-                                result_s += english_word + "/"
+                                result_s += english_word + "]["
                                 english_word = ""
                             break
                     word = word[:w_length - 1]
                 w_length = w_length - 1
             s_length = len(sentence)
+        s_length = len(result_s)
+        result_s = result_s[:s_length - 1]
     else:
+        result_s = ""
         while s_length > 0:
             word = sentence
             w_length = len(word)
             while w_length > 0:
-                if word in custom_dict or w_length == 1:
-                    result_s = word + "/" + result_s
+                if w_length == 1:
+                    print(word)
+                    # result_s = word + "][" + result_s
                     sentence = sentence[:s_length - w_length]
                     break
-                elif word in wordsdict or w_length == 1:
-                    result_s = word + "/" + result_s
+                elif word in custom_dict:
+                    result_s = word + "][" + result_s
+                    sentence = sentence[:s_length - w_length]
+                    break
+                elif word in wordsdict:
+                    result_s = word + "][" + result_s
                     sentence = sentence[:s_length - w_length]
                     break
                 else:
@@ -139,12 +148,15 @@ def mmcut(sentence, custom_dict, wordsdict, RMM=True):
                             w_length = len(word)
                         else:
                             if english_word:
-                                result_s = english_word + "/" + result_s
+                                result_s = english_word + "][" + result_s
                                 english_word = ""
                             break
                     word = word[1:]
                 w_length = w_length - 1
             s_length = len(sentence)
+        result_s = "[" + result_s
+        s_length = len(result_s)
+        result_s = result_s[:s_length-1]+"\n"
     return result_s
 
 
