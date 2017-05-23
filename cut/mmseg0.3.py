@@ -69,10 +69,11 @@ def gen_custom_dict(dictfile):
 def gen_dict(dictfile):
     print("Building dictionary...")
     dictionary_seg = {}
+    words = []
     with open(dictfile, "r", encoding='utf-8') as f:
         for line in f:
-            word, freq = line.strip().split()
-            dictionary_seg[word] = int(freq)
+            words = line.strip().split()
+            dictionary_seg[words[0]] = int(words[1])
     f.close()
     print("The volumn of dictionary: %d" % (len(dictionary_seg)))
     return dictionary_seg
@@ -92,7 +93,7 @@ def mmcut(sentence, custom_dict, wordsdict, RMM=True):
             while w_length > 0:
                 if w_length == 1:
                     print(word)
-                    # result_s += word + "/"
+                    result_s += word + "]["
                     sentence = sentence[w_length:]
                     break
                 elif word in custom_dict :
@@ -161,8 +162,8 @@ def mmcut(sentence, custom_dict, wordsdict, RMM=True):
 
 
 if __name__ == "__main__":
-    wordsdict = gen_dict("../dict/jieba.word.freq.dic")
-    custom_dict = gen_custom_dict("dict/custom.dic")
+    wordsdict = gen_dict("../dict/sogou.dic_utf8")
+    custom_dict = gen_custom_dict("../dict/custom.dic")
     desfmm = open('../it_fmm.txt', 'w', encoding='utf-8')
     desrmm = open('../it_rmm.txt', 'w', encoding='utf-8')
     with open('../IT.txt', 'r', encoding='utf-8') as src:
