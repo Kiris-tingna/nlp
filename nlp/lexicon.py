@@ -30,7 +30,7 @@ class Lexicon(object):
             yield tuple()
         else:
             ptr = self._trie
-            for i in xrange(start, str_len):
+            for i in range(start, str_len):
                 if string[i] not in ptr:
                     break
 

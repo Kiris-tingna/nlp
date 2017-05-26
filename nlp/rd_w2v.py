@@ -24,7 +24,7 @@ def load_word2vec(fn,encoding='utf-8',regular=True):
 
     w2v={}
 
-    for i in xrange(ws):
+    for i in range(ws):
         word=''
         while True:
             b = fd.read(1)
@@ -34,12 +34,12 @@ def load_word2vec(fn,encoding='utf-8',regular=True):
         
         vect=[]
         leng=0.0
-        for j in xrange(s):
+        for j in range(s):
             vj=fd.read(4)
             try:
                 vj,=struct.unpack('f',vj)
             except:
-                print i,j,vj
+                print(i,j,vj)
                 vj=0.0
                 
             vect.append(vj)
@@ -171,14 +171,14 @@ def sougou_corpus_preprocess(ifn,ofn,iencoding='gb18030',oencoding='tuf-8'):
             ofd.write('\n')
         
         i+=1
-        if i% 1000 == 0: print '.',
+        if i% 1000 == 0: print('.',)
         
         #if i > 1000: break
         
         try:
             line = ifd.readline()#.decode('gb18030')
         except Exception:
-            print i
+            print(i)
         
     ifd.close()
     ofd.close()
