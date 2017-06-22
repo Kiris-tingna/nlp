@@ -19,4 +19,4 @@ with open('dict.txt', 'r', 'utf-8') as fin:
     lex = Lexicon(tf)
     seg = Segmenter(lex)
     result = seg.segment(u'這是一隻可愛的小花貓')
-    print '/'.join(result).encode('utf-8')
+    print('/'.join(result).encode('utf-8'))

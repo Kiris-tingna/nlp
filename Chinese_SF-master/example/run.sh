@@ -1,0 +1,1 @@
+python ../RPISlotFilling/slot_filling/ChineseSlotFilling.py ./input/queries_sample.xml ./output

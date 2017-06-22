@@ -50,7 +50,7 @@ class _HandlerBase(object):
 
 
 class _SpaceHandler(_HandlerBase):
-    _PTN = compile(ur'\s+')
+    _PTN = compile(r'\s+')
 
     def process(self, token):
         # do nothing
@@ -59,19 +59,19 @@ class _SpaceHandler(_HandlerBase):
 
 
 class _EnglishAndNumberHandler(_HandlerBase):
-    _PTN = compile(ur'[A-Za-z0-9]+')
+    _PTN = compile(r'[A-Za-z0-9]+')
 
 
 class _HalfWidthSymbolHandler(_HandlerBase):
-    _PTN = compile(ur'[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+')
+    _PTN = compile(r'[\u0021-\u002F\u003A-\u0040\u005B-\u0060\u007B-\u007E]+')
 
 
 class _PunctuationHandler(_HandlerBase):
-    _PTN = compile(ur'[\u3000-\u303F\uFF00-\uFFEF]+')
+    _PTN = compile(r'[\u3000-\u303F\uFF00-\uFFEF]+')
 
 
 class _ChineseWordHandler(_HandlerBase):
-    _PTN = compile(ur'[\u4E00-\u9FFF]+')
+    _PTN = compile(r'[\u4E00-\u9FFF]+')
 
     def __init__(self, lex):
         self._lex = lex
