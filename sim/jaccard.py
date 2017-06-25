@@ -2,9 +2,9 @@
 # -*- coding:utf-8 -*-
 #Date:2016.6.13
 #用法：计算两个关键词之间的相似度。
-import requests,time,random,pycurl,json,StringIO,datetime,re,threading,urllib,Queue
+import requests,time,random,pycurl,json,datetime,re,threading,urllib
 import os
-from urlparse import *
+# from urlparse import *
 from hashlib import md5
 from multiprocessing.dummy import Pool as ThreadPool 
 import codecs	#为了生成gbk编码的文件
@@ -18,8 +18,8 @@ today = datetime.date.today()
 # import xlrd
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 
 
 def jaccard(a,b):    

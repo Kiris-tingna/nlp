@@ -8,7 +8,7 @@ import logging
 import time
 import os
 import datetime
-import _pickle as pickle
+# import _pickle as pickle
 from collections import OrderedDict
 from theano.ifelse import ifelse
 import sys
