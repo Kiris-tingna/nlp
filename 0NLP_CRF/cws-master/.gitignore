@@ -1,0 +1,8 @@
+*.pyc
+store
+output
+icwb2-data
+lib
+notes
+temp
+models
