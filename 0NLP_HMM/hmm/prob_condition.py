@@ -23,11 +23,3 @@ hmm_states = ('S', 'E', 'M', 'B')
 
 if __name__ == '__main__':
     pass
-
-
-
-
-
-
-
-	

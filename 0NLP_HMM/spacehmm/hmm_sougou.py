@@ -3,11 +3,11 @@
 from collections import Counter
 from math import log
 import math
-
 hmm_model = {i: Counter() for i in 'sbme'}
-with open('dict.txt', encoding='utf-8') as f:
+
+with open('../../dict/sogou.dic_utf8', encoding='utf-8') as f:
     for line in f:
-        lines = line.split(',')
+        lines = line.split('\t')
         if len(lines[0]) == 1:
             #  single word
             hmm_model['s'][lines[0]] += int(lines[1])
@@ -58,13 +58,9 @@ def hmm_cut(s):
             words[-1] += s[i]
     return words
 
-# 今天 天气 不错
-#print(' '.join(hmm_cut('今天天气不错')))
-#print('今天 天气 不错')
-# 李想 是 一个 好 孩子
-#print(' '.join(hmm_cut('李想是一个好孩子')))
-#print('李想 是 一个 好 孩子')
-# 小明 硕士 毕业 于 中 国科 学院 计算 所
-print(' '.join(hmm_cut('深夜的穆赫兰道发生一桩车祸，女子丽塔在车祸中失忆了')))
-#print("小明 硕士 毕业 于 中 国科 学院 计算 所")
-#print(' '.join(hmm_cut('已结婚的和尚未结婚的青年都要实行计划生育')))
+# print(' '.join(hmm_cut('今天天气不错')))
+# print(' '.join(hmm_cut('李想是一个好孩子')))
+
+print(' '.join(hmm_cut('你是直接用的他的模型还是用代码和训练数据集，还是说你这个只是从他论文上截图下来的')))
+# print("小明 硕士 毕业 于 中 国科 学院 计算 所")
+# print(' '.join(hmm_cut('已结婚的和尚未结婚的青年都要实行计划生育')))

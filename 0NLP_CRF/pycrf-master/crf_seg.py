@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import crf_tagger
 import crf_model
 import sys
@@ -8,6 +9,7 @@ if len(sys.argv) != 3:
 
 model = crf_model.CRFModel(sys.argv[1])
 tagger = crf_tagger.CRFTagger(model)
+
 
 def _tag_to_seg(text, tag):
     result = []
@@ -20,7 +22,7 @@ def _tag_to_seg(text, tag):
     result.append(word) 
     return result
 
-with open(sys.argv[2]) as fp:
+with open(sys.argv[2], encoding='utf-8') as fp:
     for line in fp:
         line = line.strip()
         x = list(map(lambda x: [x], line))

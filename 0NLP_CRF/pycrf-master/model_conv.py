@@ -4,6 +4,7 @@ import pickle
 import sys
 import gzip
 
+
 def load_metadata(fd):
     '''
     Load metadate (like version, max_id ...) from model file
@@ -19,6 +20,7 @@ def load_metadata(fd):
         metadata[key] = value
 
     return metadata
+
 
 def load_tagset(fd):
     '''
@@ -47,6 +49,7 @@ def load_template(fd):
 
     return templates    
 
+
 def load_feature_index(fd):
     '''
     Load index for each feature string from model file
@@ -63,6 +66,7 @@ def load_feature_index(fd):
 
     return feature_index
 
+
 def load_data(fd):
     '''
     Load crf cost data from model file 
@@ -76,6 +80,7 @@ def load_data(fd):
         crf_data.append(cost)
 
     return crf_data
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
@@ -104,7 +109,3 @@ if __name__ == '__main__':
         
         with gzip.open(sys.argv[2], 'wb') as fd_pickle:
             pickle.dump(crf_model, fd_pickle)
-
-
-
-
