@@ -40,6 +40,7 @@ X = numpy.reshape(X, (X.shape[0], max_len, 1))
 X = X / float(len(alphabet))
 # one hot encode the output variable
 y = np_utils.to_categorical(dataY)
+
 # create and fit the model
 batch_size = 1
 model = Sequential()
@@ -47,6 +48,7 @@ model.add(LSTM(32, input_shape=(X.shape[1], 1)))
 model.add(Dense(y.shape[1], activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(X, y, epochs=500, batch_size=batch_size, verbose=2)
+
 # summarize performance of the model
 scores = model.evaluate(X, y, verbose=0)
 print("Model Accuracy: %.2f%%" % (scores[1]*100))

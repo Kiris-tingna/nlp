@@ -55,8 +55,8 @@ if __name__ == '__main__':
     seg = Seg()
     seg.train('data.txt')
     print(' '.join(seg.seg('主要是用来放置一些简单快速的中文分词和词性标注的程序')))
-    deshmm = open('../question_snownlp.txt', 'w', encoding='utf-8')
-    with open('../question.txt', 'r', encoding='utf-8') as src:
+    deshmm = open('../data/question_snownlp.txt', 'w', encoding='utf-8')
+    with open('../data/question.txt', 'r', encoding='utf-8') as src:
         for inline in src:
             wordseghmm = '/'.join(seg.seg(inline))
             deshmm.write(wordseghmm)

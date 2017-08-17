@@ -6,6 +6,7 @@ import json
 import time
 import math
 
+
 class Weights(dict): # 管理平均感知器的权重
     def __init__(self,penalty='no'):
         self._values=dict()
@@ -14,7 +15,6 @@ class Weights(dict): # 管理平均感知器的权重
         self._ld=0.0001
         self._p=0.999
         self._log_p=math.log(self._p)
-
 
         self._acc=dict()
         #self._new_value=self._l1_regu

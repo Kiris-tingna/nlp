@@ -33,6 +33,7 @@ X = numpy.reshape(dataX, (len(dataX), seq_length, 1))
 X = X / float(len(alphabet))
 # one hot encode the output variable
 y = np_utils.to_categorical(dataY)
+
 # create and fit the model
 batch_size = 1
 model = Sequential()
@@ -42,6 +43,7 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 for i in range(300):
 	model.fit(X, y, epochs=1, batch_size=batch_size, verbose=2, shuffle=False)
 	model.reset_states()
+
 # summarize performance of the model
 scores = model.evaluate(X, y, batch_size=batch_size, verbose=0)
 model.reset_states()
