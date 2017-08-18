@@ -87,7 +87,7 @@ if __name__ == '__main__':
         sys.stderr.write('Usage ./model_conv.py CRF++_Text_File Pickle_File\n')
         quit()
 
-    with open(sys.argv[1]) as fd:
+    with open(sys.argv[1], encoding='utf-8') as fd:
         metadata = load_metadata(fd)
         if metadata['version'] != '100':
             raise 'Invalid model format!'

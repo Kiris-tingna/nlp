@@ -23,7 +23,9 @@ def _tag_to_seg(text, tag):
     return result
 
 with open(sys.argv[2], encoding='utf-8') as fp:
-    for line in fp:
-        line = line.strip()
-        x = list(map(lambda x: [x], line))
-        print('  '.join(_tag_to_seg(line, tagger.tag(x))))
+    with open('question_crf.txt', 'w') as fn:
+        for line in fp:
+            line = line.strip()
+            x = list(map(lambda x: [x], line))
+            print('  '.join(_tag_to_seg(line, tagger.tag(x))))
+            fn.write('  '.join(_tag_to_seg(line, tagger.tag(x)))+ '\n')
