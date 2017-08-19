@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import os
 import re
 import csv
@@ -7,7 +8,7 @@ from lstm import LSTM
 
 def load_vocabulary(fpath = './runs/vocab'):
     vocabulary = {}
-    with open(fpath, 'r') as f:
+    with open(fpath, 'r', encoding='utf-8') as f:
         for line in f:
             split = line.strip('\n').split(' ')
             vocabulary[split[0]] = int(split[1])
@@ -39,7 +40,7 @@ def load_data(fpath = './corpus/train.utf8', wind_size=7):
 
     X_train, Y_train = [], []
     vocabulary = load_vocabulary()
-    with open(fpath) as f:
+    with open(fpath, encoding='utf-8') as f:
         for line in f:
             split = re.split(r'\s+', line.strip())
             y = []
@@ -56,8 +57,7 @@ def load_data(fpath = './corpus/train.utf8', wind_size=7):
 
     return X_train, Y_train, vocabulary
 
-def train_with_sgd(model, X_train, y_train, learning_rate=0.001, \
-    nepoch=20, callback_every=10000, callback=None):
+def train_with_sgd(model, X_train, y_train, learning_rate=0.001, nepoch=20, callback_every=10000, callback=None):
 
     num_example_seen = 0
     for epoch in range(nepoch):

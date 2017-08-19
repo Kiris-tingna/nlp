@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import sys
 import os
 import time
@@ -23,8 +24,7 @@ X_train, y_train, vocab = load_data('./corpus/msr_training.utf8')
 X_test, y_test, vocab = load_data('./corpus/msr_test_gold.utf8')
 
 # build model
-model = LSTM(EMBEDDING_DIM, HIDDEN_DIM,\
-    NUM_CLASSES, WIND_SIZE, len(vocab), bptt_truncate=-1)
+model = LSTM(EMBEDDING_DIM, HIDDEN_DIM, NUM_CLASSES, WIND_SIZE, len(vocab), bptt_truncate=-1)
 
 # load trained model
 # floder = os.path.abspath(os.path.join(os.path.curdir, "runs"))
@@ -50,5 +50,4 @@ def sgd_callback(model, num_example_seen):
     sys.stdout.flush()
 
 for epoch in range(NEPOCH):
-    train_with_sgd(model, X_train, y_train, LEARNING_RATE, \
-        nepoch=1, callback_every=PRINT_EVERY, callback=sgd_callback)
+    train_with_sgd(model, X_train, y_train, LEARNING_RATE, epoch=1, callback_every=PRINT_EVERY, callback=sgd_callback)
